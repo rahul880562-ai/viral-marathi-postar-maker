@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Viral Marathi AI Poster Maker</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+	<div class="logo">✦</div>
+	<div>
+		<h1>Viral Marathi <span>Poster Maker</span></h1>
+		<p id="tagline">तुमची कल्पना, तुमचं डिझाइन!</p>
+	</div>
+	<button id="languageBtn" class="btn light">English</button>
+</header>
+
+<div class="layout">
+	<aside class="sidebar">
+		<h3 id="folderHeading">🎨 डिझाइन फोल्डर्स</h3>
+		<input id="search" placeholder="सण किंवा डिझाइन शोधा...">
+		<div id="categories" class="categories"></div>
+		<p class="tip">✨ Random Design वापरून नवे रंग, फ्रेम आणि डिझाइन कॉम्बिनेशन तयार करा.</p>
+	</aside>
+
+	<main>
+		<section class="heading">
+			<div>
+				<small>CREATIVE STUDIO</small>
+				<h2 id="categoryName">🎂 वाढदिवस पोस्टर</h2>
+				<p>तुमच्या आवडीनुसार पोस्टर तयार करा.</p>
+			</div>
+			<div class="actions">
+				<button id="randomBtn" class="btn primary">✦ Random Design</button>
+				<button id="moreBtn" class="btn">↻ आणखी डिझाइन</button>
+			</div>
+		</section>
+
+		<div class="studio">
+			<section class="panel preview">
+				<div class="row">
+					<label for="format">पोस्टर आकार</label>
+					<select id="format">
+						<option value="portrait">Portrait 4:5</option>
+						<option value="story">Story 9:16</option>
+						<option value="square">Square 1:1</option>
+						<option value="wallpaper">Mobile Wallpaper</option>
+					</select>
+					<span id="designNo">डिझाइन #1</span>
+				</div>
+				<div class="canvas-area">
+					<canvas id="poster" width="800" height="1000"></canvas>
+				</div>
+				<div class="actions">
+					<button id="downloadBtn" class="btn primary">⬇️ PNG डाउनलोड</button>
+					<button id="saveBtn" class="btn">♡ आवडते सेव्ह</button>
+					<button id="shareBtn" class="btn">↗️ शेअर</button>
+				</div>
+				<p class="muted">पोस्टर तुमच्या ब्राउझरमध्ये तयार होतं. प्रत्येक पोस्टरसाठी AI क्रेडिट्स लागत नाहीत.</p>
+			</section>
+
+			<section class="panel editor">
+				<div class="tabs">
+					<button class="tab active" data-tab="text">✍️ मजकूर</button>
+					<button class="tab" data-tab="photo">🖼️ फोटो</button>
+					<button class="tab" data-tab="style">🎨 स्टाइल</button>
+					<button class="tab" data-tab="stickers">✨ स्टिकर्स</button>
+				</div>
+
+				<div id="tab-text" class="tabbody active">
+					<h3>पोस्टरचा मजकूर</h3>
+					<label>मुख्य शीर्षक</label>
+					<input id="title" maxlength="70" value="वाढदिवसाच्या हार्दिक शुभेच्छा!">
+					<label>नाव</label>
+					<input id="name" maxlength="40" value="तुमचं नाव">
+					<label>संदेश</label>
+					<textarea id="message" rows="3">तुझं आयुष्य आनंद, यश आणि प्रेमाने भरलेलं असो.</textarea>
+					<label>खालील मजकूर / संपर्क</label>
+					<input id="footer" maxlength="60" placeholder="तुमचा संदेश किंवा मोबाईल नंबर">
+					<label>फॉन्ट</label>
+					<select id="font">
+						<option value="Noto Sans Devanagari, Mangal, sans-serif">देवनागरी</option>
+						<option value="Arial, sans-serif">Arial</option>
+						<option value="Georgia, serif">Georgia Serif</option>
+						<option value="Trebuchet MS, sans-serif">Trebuchet</option>
+					</select>
+					<label>मजकूर आकार</label>
+					<input id="textSize" type="range" min="0.8" max="1.3" step="0.05" value="1">
+				</div>
+
+				<div id="tab-photo" class="tabbody">
+					<h3>फोटो स्टुडिओ</h3>
+					<label>तुमचा फोटो अपलोड करा</label>
+					<input id="photoInput" type="file" accept="image/*">
+					<label>फोटो फ्रेम</label>
+					<select id="photoShape">
+						<option value="circle">गोल</option>
+						<option value="rounded">गोल कोपरे</option>
+						<option value="square">चौकोनी</option>
+					</select>
+					<label>फोटो आकार</label>
+					<input id="photoSize" type="range" min="120" max="420" value="260">
+					<label>फोटो वर / खाली</label>
+					<input id="photoY" type="range" min="25" max="65" value="43">
+					<button id="removePhoto" class="btn wide">फोटो काढून टाका</button>
+					<p class="muted">तुमचा फोटो तुमच्या डिव्हाइसवरच प्रक्रिया होतो.</p>
+				</div>
+
+				<div id="tab-style" class="tabbody">
+					<h3>रंग आणि पार्श्वभूमी</h3>
+					<label>रंगसंगती</label>
+					<select id="palette">
+						<option value="festival">उत्सवी केशरी</option>
+						<option value="royal">रॉयल जांभळा</option>
+						<option value="sunset">सनसेट</option>
+						<option value="nature">निसर्ग हिरवा</option>
+						<option value="rose">गुलाबी</option>
+						<option value="ocean">ओशन ब्लू</option>
+						<option value="midnight">मिडनाइट</option>
+						<option value="gold">गोल्डन</option>
+					</select>
+					<label>पार्श्वभूमी पॅटर्न</label>
+					<select id="pattern">
+						<option value="glow">प्रकाश आणि ग्लो</option>
+						<option value="confetti">कॉन्फेटी</option>
+						<option value="stars">तारे</option>
+						<option value="waves">वेव्ह्ज</option>
+						<option value="mandala">वर्तुळे</option>
+						<option value="minimal">मिनिमल</option>
+					</select>
+					<label>फ्रेम / बॉर्डर</label>
+					<select id="frame">
+						<option value="double">डबल गोल्ड</option>
+						<option value="floral">फ्लोरल</option>
+						<option value="bold">बोल्ड</option>
+						<option value="dashed">डॅश्ड</option>
+						<option value="none">फ्रेम नाही</option>
+					</select>
+					<label>स्वतःची पार्श्वभूमी अपलोड करा</label>
+					<input id="backgroundInput" type="file" accept="image/*">
+					<button id="resetBtn" class="btn wide">↺ सेटिंग्स रीसेट</button>
+				</div>
+
+				<div id="tab-stickers" class="tabbody">
+					<h3>स्टिकर स्टुडिओ</h3>
+					<p class="muted">स्टिकरवर क्लिक करा. तो पोस्टरमध्ये जोडला जाईल.</p>
+					<div class="stickers">
+						<button data-sticker="✨">✨<small>चमक</small></button>
+						<button data-sticker="🌸">🌸<small>फूल</small></button>
+						<button data-sticker="🪔">🪔<small>दिवा</small></button>
+						<button data-sticker="🎉">🎉<small>सेलिब्रेशन</small></button>
+						<button data-sticker="🎈">🎈<small>बलून</small></button>
+						<button data-sticker="🌿">🌿<small>पान</small></button>
+						<button data-sticker="💛">💛<small>हृदय</small></button>
+						<button data-sticker="⭐">⭐<small>तारा</small></button>
+						<button data-sticker="🚩">🚩<small>भगवा</small></button>
+						<button data-sticker="🌈">🌈<small>इंद्रधनुष्य</small></button>
+						<button data-sticker="🎂">🎂<small>केक</small></button>
+						<button data-sticker="🌺">🌺<small>फुलं</small></button>
+						<button data-sticker="🪁">🪁<small>पतंग</small></button>
+						<button data-sticker="🌾">🌾<small>शेती</small></button>
+						<button data-sticker="🎁">🎁<small>भेट</small></button>
+						<button data-sticker="🦋">🦋<small>फुलपाखरू</small></button>
+					</div>
+					<label>स्टिकर आकार</label>
+					<input id="stickerSize" type="range" min="24" max="100" value="54">
+					<button id="clearStickers" class="btn wide">सर्व स्टिकर्स काढा</button>
+				</div>
+			</section>
+		</div>
+
+		<section class="panel saved">
+			<div class="row">
+				<h3>♡ माझी सेव्ह केलेली डिझाइन्स</h3>
+				<button id="clearSaved" class="btn">सर्व हटवा</button>
+			</div>
+			<div id="savedGrid" class="saved-grid"><p class="muted">अजून डिझाइन सेव्ह केलेलं नाही.</p></div>
+		</section>
+		<footer>Viral Marathi Poster Maker · मोफत टेम्पलेट-आधारित क्रिएटिव्ह स्टुडिओ</footer>
+	</main>
+</div>
+<div id="toast" class="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
