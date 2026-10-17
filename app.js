@@ -500,3 +500,5 @@
   document.querySelectorAll(".tab").forEach(tab=>{
     tab.addEventListener("click",()=>{
       document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",
+    <link rel="stylesheet" href="styles.css">
+<script src="app.js"></script>                                                                  
